@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Modules\User\Notifications\ResetPasswordConfirmationNotification;
 use Modules\User\Notifications\ResetPasswordNotification;
 use Modules\User\Notifications\WelcomeNotification;
 
@@ -55,5 +56,10 @@ class User extends Authenticatable
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new ResetPasswordNotification($token));
+    }
+
+    public function sendPasswordResetConfirmationNotification()
+    {
+        $this->notify(new ResetPasswordConfirmationNotification($this));
     }
 }

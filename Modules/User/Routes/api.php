@@ -9,7 +9,9 @@ Route::middleware('guest:api')->group(function () {
     Route::post('/register', [SessionController::class, 'register']);
 
     Route::post('/forgot', [ForgotPasswordController::class, 'forgot']);
-    // Route::get('/reset/{token}/{email}', [ResetPasswordController::class, 'formReset'])->name('password.reset');
+
+    // Rota específica para a estrutura do email
+    Route::get('/reset/{token}/{email}', [ResetPasswordController::class, 'formReset'])->name('password.reset');
     Route::post('/reset', [ResetPasswordController::class, 'reset']);
 });
 
